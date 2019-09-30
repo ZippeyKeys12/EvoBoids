@@ -1,31 +1,30 @@
-const path = require('path');
+const path = require("path");
 
 module.exports = {
-    mode: 'development',
-    entry: './src/main.js',
+    mode: "development",
+    entry: "./src/main.js",
     resolve: {
-        extensions: ['.ts', '.js'],
-        modules: [path.join(__dirname, 'src'), 'node_modules']
+        extensions: [".ts", ".js"],
+        modules: [path.join(__dirname, "src"), "node_modules"]
     },
     module: {
-        rules: [{
+        rules: [
+            {
                 test: /\.(x?)html$/,
-                use: [{
-                        loader: 'file-loader',
+                use: [
+                    {
+                        loader: "file-loader",
                         options: {
-                            name: '[name].[ext]'
+                            name: "[name].[ext]"
                         }
                     },
                     {
-                        loader: 'extract-loader'
+                        loader: "extract-loader"
                     },
                     {
-                        loader: 'html-loader',
+                        loader: "html-loader",
                         options: {
-                            attrs: [
-                                'img:src',
-                                'link:href'
-                            ],
+                            attrs: ["img:src", "link:href"],
                             interpolate: true
                         }
                     }
@@ -35,18 +34,18 @@ module.exports = {
                 test: /\.js(x?)$/,
                 exclude: /node_modules/,
                 use: {
-                    loader: 'babel-loader',
+                    loader: "babel-loader",
                     options: {
-                        presets: ['@babel/preset-env'],
-                        plugins: ['transform-class-properties']
+                        presets: ["@babel/preset-env"],
+                        plugins: ["transform-class-properties"]
                     }
                 }
             }
         ]
     },
     output: {
-        path: path.resolve(__dirname, 'dist'),
-        filename: 'main.bundle.js'
+        path: path.resolve(__dirname, "dist"),
+        filename: "main.bundle.js"
     },
     devServer: {
         contentBase: path.join(__dirname, "dist"),
